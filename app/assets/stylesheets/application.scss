@@ -1,0 +1,36 @@
+
+
+@import "bootstrap";
+body{
+  min-height: 100%;
+}
+.footer {
+  clear: both;
+  position: relative;
+  height: 200px;
+  padding-top: 50px;
+  margin-top: 200px;
+  background-color: #c4e1f4;
+}
+.custom-breadcrumns{
+  padding: 20px 0;
+}
+.border-bottom{
+  border-bottom: 1px solid black;
+  margin-bottom: 30px;
+}
+
+a:hover{
+  text-decoration: none;
+}
+.ntu-bg-color{
+  background-color: #c4e1f4;
+
+}
+.card-header{
+  border-bottom: 1px solid #f94746;
+  background-color: #c4e1f4
+}
+.card-body{
+  padding-left: 50px;
+}

@@ -1,0 +1,62 @@
+<div class="container custom-breadcrumns border-bottom">
+  <%= link_to "Home", students_path %>
+  <span class="mx-3"><svg class="bi bi-chevron-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+</svg></span>
+  <%= link_to "unit", units_path_url(:id => @unitId) %>
+  <span class="mx-3"><svg class="bi bi-chevron-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+</svg></span>
+  <%= link_to "Part", {action: :index, controller: :parts, :id => @id} %>
+</div>
+<div class="content border-bottom">
+  <h4>Lesson</h4>
+
+</div>
+<div style="margin-bottom: 30px;"><%= @content %></div>
+<% unless @words.first.nil? %>
+  <br>
+  <div class="new-words">
+    <h4>New words</h4>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Translate</th>
+        <th>Pronunciation</th>
+      </tr>
+
+      <% @words.each do |w| %>
+        <tr>
+          <td><%= w.Name %></td>
+          <td><%= w.Type %></td>
+          <td><%= w.Translate %></td>
+          <td>
+            <audio src="<%= audio_path w.audio.Path %>" type="audio/mpeg" controls>
+              Your browser doesnt support the audio element
+            </audio>
+          </td>
+        </tr>
+
+
+      <% end %>
+    </table>
+  </div>
+<% end %>
+<div class="row">
+  <div class="col-md-6">
+    <button onclick="goBack()" class="btn btn-primary"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+      <path fill-rule="evenodd" d="M2.5 8a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+    </svg> Go Back</button>
+  </div>
+  <div class="col-md-6">
+    <h6><%= link_to "Do exercise", {action: 'index', controller: :exercise, id: @id}, class: "btn btn-primary" %></h6>
+  </div>
+
+</div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

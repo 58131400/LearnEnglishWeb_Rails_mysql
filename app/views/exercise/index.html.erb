@@ -1,0 +1,47 @@
+<% stylesheet_link_tag "units" %>
+<div class="container custom-breadcrumns border-bottom">
+  <% if @current_user.TypeUser == 2 %>
+    <%= link_to "Home" , students_path %>
+  <% else %>
+    <%= link_to "Home" , teacher_index_path %>
+  <%end %>
+
+  <span class="mx-3"><svg class="bi bi-chevron-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+</svg></span>
+  <% if @part.typepart_id == 1 %>
+    <%= link_to "Speaking", "" + @id.to_s %>
+  <% elsif @part.typepart_id == 2 %>
+    <%= link_to "Reading", "" + @id.to_s %>
+  <% elsif @part.typepart_id == 3 %>
+    <%= link_to "Vocabualary", "" + @id.to_s %>
+  <% else %>
+    <%= link_to "grammar", "" + @id.to_s %>
+
+  <% end %>
+</div>
+<div class="container">
+  <%= form_tag "/answer/" + @id.to_s , :class =>"needs-validation" do %>
+    <% @array2.each do |e| %>
+      <div class="card mb-3">
+        <div class="card-header">
+          <h3><%= e[0].Question %></h3>
+        </div>
+        <div class="card-body">
+          <% e[1].each do |s| %>
+            <div>
+              <%= radio_button_tag("exercise[" + s.exercise_id.to_s + "]", s.SelectionId) %>
+              <%= label_tag("exercise[" + s.exercise_id.to_s + "]", s.Content) %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div class="text-center">
+    <%= submit_tag("submit", class: "btn btn-primary mt-2") %>
+    </div>
+  <% end %>
+</div>
+
+
+

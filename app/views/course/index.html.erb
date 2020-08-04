@@ -1,0 +1,77 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Course Information</h4>
+  </div>
+  <div class="card-body text-center">
+    <table class="table table-striped">
+      <tr>
+        <th>id</th>
+        <td><%=@course.course_id %></td>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <td><%=@course.name %></td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td><%=@course.description %></td>
+      </tr>
+      <tr>
+        <th>start time</th>
+        <td><%=@course.start_time %></td>
+      </tr>
+      <tr>
+        <th>finish time</th>
+        <td><%=@course.finish_time %></td>
+      </tr>
+      <tr>
+        <th>Book </th>
+        <td><%=@course.book.Name %></td>
+      </tr>
+      <tr>
+        <th>level</th>
+        <td><%=@course.course_level %></td>
+      </tr>
+      <tr>
+        <th>Teacher</th>
+        <td>
+<%@teachers.each do |t| %>
+          <div>- <%=t.user.Name %></div>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+    <% if !@students.first.nil? or @current_user.TypeUser != 2%>
+    <h4>List student</h4>
+    <table class="table ">
+      <thead class="thead-dark">
+      <tr>
+        <th>#</th>
+        <th>student name</th>
+        <th>student card</th>
+        <th>class</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <%@students.each_with_index { |s,i | %>
+        <tr>
+          <td><%=(i+1) %></td>
+          <td><%=s.user.Name %></td>
+          <td><%=s.StudentCard %></td>
+          <td><%=s.classdb_id %></td>
+          <td><%=link_to "View progress", {action: :index, controller: :books, data: {book_id: @course.book_id,student_id: s.user_id} }%></td>
+        </tr>
+         <%} %>
+    </table>
+      <%end %>
+    <%if @current_user.TypeUser == 2 %>
+
+
+        <div class="text-center">
+      <%=link_to 'Join this course', {action: :join_course,controller: :course, id: @course.course_id}, class: 'btn btn-primary' %>
+        </div>
+
+    <%end %>
+
+  </div>
+</div>

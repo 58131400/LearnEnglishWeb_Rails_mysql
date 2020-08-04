@@ -1,0 +1,47 @@
+<%= form_tag("/answer") do %>
+  <% session[:exercises].each do |e| %>
+    <div class="unit-div"><h3><%= e[0]["Question"] %></h3></div>
+    <% e[1].each do |s| %>
+      <div>
+        <%= radio_button_tag("exercise[" + s["exercise_id"].to_s + "]", s["SelectionId"]) %>
+        <%= label_tag("exercise[" + s["exercise_id"].to_s + "]", s["Content"]) %>
+        <div id="showAnswer" style="display: inline-block">
+          <%= hide_answer_if(!session[:usertestanswers], :id => "showAnswer") do %>
+            <% session[:usertestanswers].each { |k, userAnswerValue| %>
+              <% if userAnswerValue.to_i == s["SelectionId"]
+                   flag = false
+                   session[:rightanswer].each { |r|
+                     if r == userAnswerValue.to_i
+                       flag = true
+                       break
+                     end
+                   }
+                   if flag == true
+              %>&#x2714;
+                <% else %>
+                  <h3 class="text-danger">
+                    <svg class="bi bi-x" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+                      <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+                    </svg>
+                  </h3>
+                <% end
+
+                   end %>
+            <% } %>
+            <% end %>
+        </div>
+      </div>
+    <% end
+       end
+       end %>
+
+
+<div id="mark">
+  <h3>Your mark: <%= session[:mark] %> / <%=session[:exercises].size() %></h3>
+</div>
+<% if @current_user.TypeUser == 2 %>
+  <%= link_to "Back Home", students_path %>
+<% else %>
+  <%= link_to "Back Home", teacher_index_path %>
+<% end %>

@@ -1,0 +1,53 @@
+<%=stylesheet_link_tag "course" %>
+<div class="card">
+  <div class="card-header text-center"><h4>Create new course</h4></div>
+  <div class="card-body">
+    <div class="mx-auto text-center" style="width: 400px">
+    <%=form_with url: 'create',:html => {:class => "form-horizontal"} do %>
+    <div class="form-group">
+      <%=label_tag :course, "Name: ", class:  'col-control-label' %>
+
+      <%=text_field :course, :name, class: "form-control" %>
+    </div>
+      <div class="form-group">
+        <%=label_tag :course, "Description: ", class:  'col-control-label' %>
+        <%=text_area :course, :description, class: "form-control" %>
+      </div>
+        <div class="form-group">
+          <%=label_tag :course, "Level: ", class:  'col-control-label' %>
+
+          <%= select_tag(:level,options_for_select([["A1", "A1"], ["A2", "A2"], ["B1", "B1"], ["B2", "B2"]]), class: "form-control") %>
+        </div>
+      <div class="form-group">
+        <%=label_tag :course, "Start time: ", class:  'col-control-label' %>
+        <div>
+        <%=date_select :course, :start_time, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%=label_tag :course, "Finish time: ", class:  'col-control-label' %>
+        <div>
+        <%=date_select :course, :finish_time, class: "form-control" %>
+        </div>
+      </div>
+        <div class="form-group">
+          <%=label_tag :teacher, "Teacher: ", class:  'col-control-label' %>
+          <%=collection_select(:User, :UserID, @teachers, :UserID, :Name,options = {:prompt => 'Please select'},html_options ={:class => 'select_teacher', :multiple => true}) %>
+        </div>
+      <div class="form-group" >
+        <%=label_tag :course, "Choose book: ", class:  'col-control-label' %>
+        <div>
+        <%= collection_select(:course, :book_id, @books, :BookId, :Name, class: "form-control") %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="">
+          <%= submit_tag 'create', class: "btn btn-primary" %>
+        </div>
+      </div>
+    <%end %>
+    </div>
+  </div>
+</div>
+

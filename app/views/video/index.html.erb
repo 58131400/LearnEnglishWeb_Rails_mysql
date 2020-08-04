@@ -1,0 +1,40 @@
+
+<% if !@videos.first.nil? %>
+  <div class="">
+      <div class="border-bottom" style="line-height: 50px">
+
+        There are <i><strong><%=@videos.size %></strong> </i> results.
+
+        <div class="float-right">
+          <%=link_to 'Upload', video_new_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <table class="table table-striped">
+      <thead>
+      <th>video</th>
+      <th>name</th>
+      <th>content</th>
+      <th>upload by</th>
+      </thead>
+      <tbody>
+      <% @videos.each do |video| %>
+      <tr>
+        <td style="width: 300px; height: 300px">
+
+          <%= video_tag url_for(video.clip),
+                        controls: true, style: "width: 100%;height: 300px",poster: url_for(video.thumbnail) %>
+
+        </td>
+        <td><%= video.name %></td>
+        <td><%= video.content %></td>
+        <td><%= video.user.Name %></td>
+      </tr>
+      <%end %>
+      </tbody>
+    </table>
+
+
+  </div>
+  <% else %>
+  There is no video available.
+<%end %>

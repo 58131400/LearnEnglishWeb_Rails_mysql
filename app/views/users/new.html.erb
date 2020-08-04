@@ -1,0 +1,128 @@
+
+  <%= stylesheet_link_tag("styleRegister.css") %>
+
+
+
+<div class="text-danger">
+  <%@user.errors.each do |attr,msg| %>
+  <%=msg %>
+  <% end %>
+  <!-- Sign up form -->
+  <section class="signup">
+    <div class="container">
+      <div class="signup-content">
+        <div class="signup-form">
+          <h2 class="form-title">Sign up</h2>
+          <%= form_for @user, html: {class: "register-form , needs-validation", id: "register-form"} do |f| %>
+            <div class="form-group">
+              <%= f.text_field :Name, placeholder: "Your name", :required => 'true' %>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please provide your name.
+              </div>
+            </div>
+            <div class="form-group">
+
+              <%= f.email_field :Email, placeholder: "your Email", :required => 'true' %>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please provide your email.
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :Phone, placeholder: "Your Phone" %>
+            </div>
+            <div class="form-group">
+
+              <%= f.text_field :username, placeholder: "Your user name" , :required => 'true' %>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please provide your username.
+
+              </div>
+            </div>
+
+            <div class="form-group">
+
+              <%= f.password_field :password, placeholder: "Password" , :required => 'true'%>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please provide your password.
+              </div>
+            </div>
+            <div class="form-group">
+
+              <%= f.password_field :Password_confirmation, placeholder: "Repeat your password" , :required => 'true'%>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please provide your password again.
+              </div>
+            </div>
+
+              <div class="form-check form-check-inline">
+                <%= f.radio_button :TypeUser, 2, class: "form-check-input label-check-radio", :required =>'true'%>
+                <%= f.label :TypeUser, "Student", class: "form-check-label" %>
+              </div>
+              <div class="form-check form-check-inline">
+                <%= f.radio_button :TypeUser, 1, class: "form-check-input" %>
+                <%= f.label :TypeUser, "Teacher", class: "form-check-label  label-check-radio", :required =>'true' %>
+
+                <div class="invalid-feedback">
+                  Please choose type user.
+                </div>
+              </div>
+
+            <div class="form-group">
+              <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required/>
+              <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in
+                <a href="#" class="term-service">Terms of service</a></label>
+            </div>
+            <div class="form-group form-button text-dark">
+              <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+            </div>
+          <% end %>
+        </div>
+        <div class="signup-image">
+          <figure><%= image_tag ("signup-image.jpg") %> </figure>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+<!-- JS -->
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+<!--<script src="js/main.js"></script>-->

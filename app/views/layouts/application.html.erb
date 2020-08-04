@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Untitled4</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+
+  <body>
+
+  <div>
+    <%= render 'layouts/header' %>
+  </div>
+  <section class="content" style="min-height: auto;">
+    <% flash.each do |key, value| %>
+      <div class="row">
+        <div class="alert alert-<%= key %>">
+          <%= value %>
+        </div>
+      </div>
+    <% end %>
+  </section>
+
+  <div style="min-height: 650px; margin-top: 50px" class="container"> <%= yield %></div>
+
+  <div class="footer">
+    <%= render 'layouts/footer' %>
+  </div>
+
+  </body>
+
+</html>

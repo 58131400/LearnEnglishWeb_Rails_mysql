@@ -1,0 +1,32 @@
+<table class="table">
+  <tr>
+  <th>#</th>
+  <th>Question</th>
+  <th>Selection</th>
+  </tr>
+  <% @exercises.each_with_index { |e,index | %>
+
+  <tr>
+    <td><%=index %></td>
+    <td><%=e[0]["Question"] %></td>
+    <td>
+      <% e[1].each_with_index { |f,i |  %>
+      Select <%=i+1 %>. <%=f["Content"] %><br>
+      <% } %>
+    </td>
+  </tr>
+    <%} %>
+</table>
+<div class="row">
+  <div class="col-md-6">
+<%=button_to "Choose this" , {action: 'postAvailableTest',controller: 'test', id: @test.id}, class:"btn btn-primary float-right" %>
+  </div>
+  <div class="col-md-6">
+<button class="btn btn-primary" onclick="goBack()" style="width: 120px">Back</button>
+  </div>
+</div>
+<script>
+  function goBack() {
+      window.history.back();
+  }
+</script>

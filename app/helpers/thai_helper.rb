@@ -1,0 +1,2 @@
+module ThaiHelper
+end

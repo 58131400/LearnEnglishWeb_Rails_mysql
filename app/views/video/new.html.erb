@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-header text-center">UPLOAD VIDEO</div>
+  <div class="card-body">
+    <div class="mx-auto text-center" style="width: 600px">
+      <%= form_for @video,url: {action: :create,controller: :video}, html: {multipart: true} do |f| %>
+        <% if @video.errors.any? %>
+          <div id="error_explanation" class="border border-danger">
+            <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
+
+            <ul>
+              <% @video.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :name %>
+
+          <%= f.text_field :name, class: 'form-control' %>
+
+        </div>
+        <div class="form-group">
+          <%= f.label :content %><br>
+          <%= f.text_area :content, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <div class="">
+            <%= f.label :clip %>
+          </div>
+          <div class="">
+            <%= f.file_field :clip%>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :thumbnail %>
+
+          <div class="form-group">
+            <%= f.file_field :thumbnail%>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.submit 'submit', class:"btn btn-primary"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

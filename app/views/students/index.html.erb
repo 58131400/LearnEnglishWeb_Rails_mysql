@@ -1,0 +1,140 @@
+<div class="custom-breadcrumns border-bottom">
+  <div class="container">
+    <% if @current_user.TypeUser == 2 %>
+      <%= link_to "Home", students_path %>
+    <% else %>
+      <%= link_to "Home", teacher_index_path %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-9">
+    <div class="custom-menu-bottom">
+      <div class="container">
+        <div class="card">
+          <div class="card-header">
+            <h4>
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list-stars" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+                <path d="M2.242 2.194a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.277.277 0 0 0-.094.3l.173.569c.078.256-.213.462-.423.3l-.417-.324a.267.267 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.277.277 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.271.271 0 0 0 .259-.194l.162-.53zm0 4a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.277.277 0 0 0-.094.3l.173.569c.078.255-.213.462-.423.3l-.417-.324a.267.267 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.277.277 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.271.271 0 0 0 .259-.194l.162-.53zm0 4a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.277.277 0 0 0-.094.3l.173.569c.078.255-.213.462-.423.3l-.417-.324a.267.267 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.277.277 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.271.271 0 0 0 .259-.194l.162-.53z"/>
+              </svg>
+              COURSE
+            </h4>
+          </div>
+          <div class="card-body">
+            <% if @courses.first.nil? %>
+              <h6><i>You dont have any course! </i></h6>
+            <% else %>
+              <div class="row">
+                <% @courses.each do |c|
+
+                %>
+                  <div class="col-md-4">
+                    <div class="card">
+                      <%= image_tag c.book.image, style: "width: auto; height: 250px" %>
+                      <% sc = c.student_courses.where('student_id = ?', @current_user.UserID).first %>
+                      <div class="card-body pl-2">
+                        <h6 class="card-title"><b><%= c.name %></b></h6>
+                        <h6 class="">Self Study : <%= (sc.process * 100).to_i %> %</h6>
+                        <div class="progress" style="margin-bottom: 30px">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="<%= (sc.process * 100).to_i %>" aria-valuemin="0"
+                               aria-valuemax="100" style="width: <%= sc.process*100 %>%"></div>
+                        </div>
+                        <%= button_to " Activities", {action: :learn, controller: 'course', id: c.course_id}, method: :get, class: "btn btn-primary" %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h4><SPAN class="text-info"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cone-striped" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M7.879 11.015a.5.5 0 0 1 .242 0l6 1.5a.5.5 0 0 1 .037.96l-6 2a.499.499 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l6-1.5z"/>
+    <path d="M9.97 4.88l.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.159-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm2.005 8.015l-.565-2.257c-.862.212-1.964.339-3.165.339s-2.303-.127-3.165-.339l-.565 2.257 3.609-.902a.5.5 0 0 1 .242 0l3.609.902z"/>
+  </svg></SPAN> AVAILABLE COURSE
+            </h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <% @allcourses.each do |c|
+
+              %>
+                <div class="col-md-4">
+                  <div class="card" style="width: 18rem;">
+                    <%= image_tag c.book.image, style: "width: auto; height: 250px" %>
+
+                    <div class="card-body pl-2">
+                      <h5 class="card-title overflow-hidden"><%= c.name %></h5>
+                      <div>Description: <%= c.description %></div>
+                      <div>Start time: <%= c.start_time %></div>
+                      <div>Finish time: <%= c.finish_time %></div>
+                      <%= button_to "Join Course", {action: :index, controller: 'course', id: c.course_id}, method: :get, class: "btn btn-primary" %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-top: 30px;">
+          <div class="card-header"><h4>YOUR TEST</h4></div>
+          <div class="card-body">
+            <% if !@test.nil? %>
+
+              <div class="row" style="margin-top: 30px;">
+                <h4>
+                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-exclamation-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                  </svg>
+
+
+                  <%= link_to_if(@test.startTime <= DateTime.now, " You have a Test", {action: :doTest, controller: :test}, class: "text-warning") %>
+                  on <%=@test.startTime %>
+                </h4>
+
+
+              </div>
+            <% else %>
+              <h6>You dont have any test now</h6>
+            <% end %>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+  <div class="col-md-3 col-xs-12">
+    <div class="container">
+      <div class="card">
+        <div class="card-header"><h4>User</h4></div>
+        <div class="card-body pl-3">
+          <div>Students: <%= @number_student %></div>
+          <div>Teacher: <%= @number_teacher %></div>
+        </div>
+      </div>
+      <div class="card mt-4">
+        <div class="card-header"><h4>Top Student</h4></div>
+        <div class="card-body pl-3">
+          <table class="table table-striped">
+            <tr>
+              <th>Name</th>
+              <th>Point</th>
+            </tr>
+          <%@top_student.each do|top| %>
+          <tr>
+            <td><%=top.user.Name %></td>
+            <td><%=top.point %></td>
+          </tr>
+          <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

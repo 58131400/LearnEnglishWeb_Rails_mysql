@@ -1,0 +1,43 @@
+<%= form_with :url => 'test/createTest'  do%>
+  <%= label_tag :numberquestion , "Number Question in Test:" %>
+  <%= number_field_tag :numberquestion %>
+  <%=button_tag 'submit', type: 'button', id: 'btn-submit', class: "btn btn-primary" %>
+<% end%>
+
+<div id="newquestion">
+
+</div>
+
+<script>
+    document.getElementById("btn-submit").addEventListener("click", function(event){
+
+      var numberquestion = document.getElementById("numberquestion").value;
+      var text = '<form action="postCustomTest" method="post">'
+      for (var i = 0; i< numberquestion; i++)
+      {
+          text += "<div class='exercise' style='margin: 100px 0'>" +
+              "<div class='row form-group'><label for='question' class='col-md-3'><h6>Question "+(i+1)+":</h6> </label>" +
+              "<input type='text' name='question["+i+"]' class='col-md-9'> " +
+              "</div><div class='row form-group'><label for='select' class='col-md-3'>select 1: </label>" +
+              "<input type='text' class='col-md-9' name='select["+i+"][0]'>" +
+              "</div><div class='row form-group'><label for='select' class='col-md-3'>select 2: </label>" +
+              "<input type='text' class='col-md-9' name='select["+i+"][1]'>" +
+              "</div><div class='row form-group'><label for='select' class='col-md-3'>select 3: </label>" +
+              "<input type='text'  class='col-md-9' name='select["+i+"][2]'>" +
+              "</div><div class='row form-group'><label for='select' class='col-md-3'>select 4: </label>" +
+              "<input type='text' class='col-md-9' name='select["+i+"][3]'>" +
+              "</div><div class='row form-group'><label for='rightselect' class='col-md-3'>Right select is: </label>" +
+              "<select name='rightselect["+i+"]'>" +
+              "<option value='select["+i+"][0]'>select 1</option>" +
+              "<option value='select["+i+"][1]'>select 2</option>" +
+              "<option value='select["+i+"][2]'>select 3</option>" +
+              "<option value='select["+i+"][3]'>select 4</option>" +
+              "</select>" +
+          "</div>"
+      }
+
+      text+= "<div class='text-center'><button type='submit' name='submit' class='btn btn-primary'>Submit</button></div>"+"</form>"
+        document.getElementById("newquestion").innerHTML = text;
+  });
+
+</script>

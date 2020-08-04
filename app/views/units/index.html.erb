@@ -1,0 +1,111 @@
+<div class="container custom-breadcrumns border-bottom">
+  <% if @current_user.TypeUser == 2 %>
+    <%= link_to "Home", students_path %>
+  <% else %>
+    <%= link_to "Home", teacher_index_path %>
+  <% end %>
+  <span class="mx-3"><svg class="bi bi-chevron-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+</svg></span>
+  <%= link_to "unit", "" + @unit.UnitID.to_s %>
+</div>
+<%if @speaking.nil? or @reading.nil? or @grammar.nil? or @vocabualary.nil? %>
+<h6><i>Sorry. Data not available for this unit</i></h6>
+  <%else %>
+
+
+<div class="unit-div"><h3>Unit <%= @unit.UnitID %></h3></div>
+<div class="container">
+  <%= stylesheet_link_tag "Unit" %>
+  <div class="unit-div">
+    <h5>
+      <svg class="bi bi-chat-dots-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+      </svg>&nbsp;<%= link_to "Speaking", {action: :index, controller: :parts, id: @speaking.PartId} %></h5>
+    <div class="row">
+      <div class="col-md-4"><i>Hard question: <%=@speaking_hard_question %></i></div>
+      <div class="col-md-4"><i>Medium question: <%=@speaking_medium_question %></i></div>
+      <div class="col-md-4"><i>Easy question: <%=@speaking_easy_question %></i></div>
+    </div>
+    <% unless @speaking.studentparts.where("student_id =?", @user["user_id"]).first.nil? -%>
+    <%  mark =@speaking.studentparts.where("student_id =?",@user["user_id"]).first.mark  %>
+      <h6>Finished: <span> &#x2714;</span></h6>
+      <h6>Mark: <%=  ((mark ).to_i.to_s + " / " + (@speaking.NumberQuestion * 10).to_s)  %></h6>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" aria-valuenow="<%=  (mark * 100)  %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= ((mark *100)/(@speaking.NumberQuestion * 10)) %>%"></div>
+    </div>
+    <% end %>
+  </div>
+  <div class="unit-div">
+    <h5>
+      <svg class="bi bi-book-half" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M12.786 1.072C11.188.752 9.084.71 7.646 2.146A.5.5 0 0 0 7.5 2.5v11a.5.5 0 0 0 .854.354c.843-.844 2.115-1.059 3.47-.92 1.344.14 2.66.617 3.452 1.013A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.276-.447L15.5 2.5l.224-.447-.002-.001-.004-.002-.013-.006-.047-.023a12.582 12.582 0 0 0-.799-.34 12.96 12.96 0 0 0-2.073-.609zM15 2.82v9.908c-.846-.343-1.944-.672-3.074-.788-1.143-.118-2.387-.023-3.426.56V2.718c1.063-.929 2.631-.956 4.09-.664A11.956 11.956 0 0 1 15 2.82z"/>
+        <path fill-rule="evenodd" d="M3.214 1.072C4.813.752 6.916.71 8.354 2.146A.5.5 0 0 1 8.5 2.5v11a.5.5 0 0 1-.854.354c-.843-.844-2.115-1.059-3.47-.92-1.344.14-2.66.617-3.452 1.013A.5.5 0 0 1 0 13.5v-11a.5.5 0 0 1 .276-.447L.5 2.5l-.224-.447.002-.001.004-.002.013-.006a5.017 5.017 0 0 1 .22-.103 12.958 12.958 0 0 1 2.7-.869z"/>
+      </svg>&nbsp;<%= link_to "Reading", {action: :index, controller: :parts, id: @reading.PartId} %></h5>
+    <div class="row">
+      <div class="col-md-4"><i>Hard question: <%=@reading_hard_question %></i></div>
+      <div class="col-md-4"><i>Medium question: <%=@reading_medium_question %></i></div>
+      <div class="col-md-4"><i>Easy question: <%=@reading_easy_question %></i></div>
+    </div>
+    <% if !@reading.studentparts.where("student_id =?",@user["user_id"]).first.nil? -%>
+      <% mark =@reading.studentparts.where("student_id =?",@user["user_id"]).first.mark %>
+      <h6>Finished: <span> &#x2714;</span></h6>
+      <h6>Mark: <%= ((mark ).to_i.to_s + " / " + (@reading.NumberQuestion * 10).to_s) %></h6>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="<%= (mark * 100) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (mark * 100)%>%"></div>
+      </div>
+    <% end %>
+  </div>
+  <div class="unit-div">
+    <h5>
+      <svg class="bi bi-list-ul" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+      </svg>&nbsp;<%= link_to "Vocabualary", {action: :index, controller: :parts, id: @vocabualary.PartId} %></h5>
+    <div class="row">
+      <div class="col-md-4"><i>Hard question: <%=@vocabualary_hard_question %></i></div>
+      <div class="col-md-4"><i>Medium question: <%=@vocabualary_medium_question %></i></div>
+      <div class="col-md-4"><i>Easy question: <%=@vocabualary_easy_question %></i></div>
+    </div>
+    <% if !@vocabualary.studentparts.where("student_id =?",@user["user_id"]).first.nil? -%>
+      <% mark =@vocabualary.studentparts.where("student_id =?",@user["user_id"]).first.mark %>
+      <h6>Finished: <span> &#x2714;</span></h6>
+      <h6>Mark: <%= ((mark ).to_i.to_s + " / " + (@vocabualary.NumberQuestion * 10).to_s) %></h6>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="<%= (mark * 100) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (mark * 100)%>%"></div>
+      </div>
+    <% end %>
+  </div>
+  <div class="unit-div">
+    <h5>
+      <svg class="bi bi-bookmarks-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12l-5-3-5 3V4z"/>
+        <path d="M14 14l-1-.6V2a1 1 0 0 0-1-1H4.268A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v12z"/>
+      </svg>&nbsp;<%= link_to "Grammar", {action: :index, controller: :parts, id: @grammar.PartId} %></h5>
+    <div class="row">
+      <div class="col-md-4"><i>Hard question: <%=@grammar_hard_question %></i></div>
+      <div class="col-md-4"><i>Medium question: <%=@grammar_medium_question %></i></div>
+      <div class="col-md-4"><i>Easy question: <%=@grammar_easy_question %></i></div>
+    </div>
+    <% if !@grammar.studentparts.where("student_id =?",@user["user_id"]).first.nil?-%>
+      <% mark =@grammar.studentparts.where("student_id =?",@user["user_id"]).first.mark %>
+      <h6>Finished: <span> &#x2714;</span></h6>
+      <h6>Mark: <%= ((mark ).to_i.to_s + " / " + (@grammar.NumberQuestion * 10).to_s) %></h6>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="<%= (mark* 100) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (mark * 100)%>%"></div>
+      </div>
+    <% end %>
+  </div>
+
+
+</div>
+<%end %>
+  <button class="btn btn-primary" onclick="goBack()" style="margin-top: 30px" ><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+    <path fill-rule="evenodd" d="M2.5 8a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+  </svg> Back</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

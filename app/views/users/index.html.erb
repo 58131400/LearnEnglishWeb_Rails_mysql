@@ -1,0 +1,130 @@
+<div class="card my-4">
+  <div class="card-header"><h4>Personal Information</h4></div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+      <th>User ID</th>
+      <th>Full Name</th>
+      <th>User name</th>
+      <th>Email</th>
+      <th>TypeUser</th>
+      <th>Phone</th>
+      <% unless @student.nil? %>
+        <th>Student card</th>
+        <th>Class</th>
+        <th>Point</th>
+      <% end %>
+      <% unless @teacher.nil? %>
+        <th>Department</th>
+        <th>Teacher card</th>
+      <% end %>
+      </thead>
+      <tbody>
+
+      <tr>
+        <td><%= @user.UserID %></td>
+        <td><%= @user.Name %></td>
+        <td><%= @user.username %></td>
+        <td><%= @user.Email %></td>
+        <td><%= if @user.TypeUser == 2
+                  "Student"
+                elsif @user.TypeUser == 1
+                  "Teacher"
+                else
+                  "admin"
+                end %></td>
+        <td><%= @user.Phone %></td>
+        <% unless @student.nil? %>
+          <td><%= @student.StudentCard %></td>
+          <td><%= @student.classdb_id %></td>
+          <td><%= @student.point %></td>
+        <% end %>
+        <% unless @teacher.nil? %>
+          <td><%= @teacher.DepartmentName %></td>
+          <td><%= @teacher.TeacherCard %></td>
+
+        <% end %>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<% if !@student.nil? and !@student.courses.first.nil? %>
+  <div class="card">
+    <div class="card-header"><h4>Course Study</h4></div>
+    <div class="card-body">
+      <% @student.courses.each do |c| %>
+
+
+            <div class="border-bottom my-4"><h5><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-book-half" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M12.786 1.072C11.188.752 9.084.71 7.646 2.146A.5.5 0 0 0 7.5 2.5v11a.5.5 0 0 0 .854.354c.843-.844 2.115-1.059 3.47-.92 1.344.14 2.66.617 3.452 1.013A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.276-.447L15.5 2.5l.224-.447-.002-.001-.004-.002-.013-.006-.047-.023a12.582 12.582 0 0 0-.799-.34 12.96 12.96 0 0 0-2.073-.609zM15 2.82v9.908c-.846-.343-1.944-.672-3.074-.788-1.143-.118-2.387-.023-3.426.56V2.718c1.063-.929 2.631-.956 4.09-.664A11.956 11.956 0 0 1 15 2.82z"/>
+              <path fill-rule="evenodd" d="M3.214 1.072C4.813.752 6.916.71 8.354 2.146A.5.5 0 0 1 8.5 2.5v11a.5.5 0 0 1-.854.354c-.843-.844-2.115-1.059-3.47-.92-1.344.14-2.66.617-3.452 1.013A.5.5 0 0 1 0 13.5v-11a.5.5 0 0 1 .276-.447L.5 2.5l-.224-.447.002-.001.004-.002.013-.006a5.017 5.017 0 0 1 .22-.103 12.958 12.958 0 0 1 2.7-.869z"/>
+            </svg> <%= c.name %></h5></div>
+            <div class="">
+              <%
+                Typepart.all.each { |i|
+                  part_mark_all = 0
+                  units = c.book.units
+                  units.each do |u|
+                    parts = u.Parts.where("typepart_id = ?", i)
+
+                    #lap qua cac part
+                    parts.each do |p|
+                      studentpart = @student.studentparts.select(:mark).where("part_id = ?", p.PartId).first
+                      part_mark = 0
+                      unless studentpart.nil?
+                        part_mark = studentpart['mark']
+                      end
+                      puts part_mark
+                      part_mark_all += part_mark
+                    end
+                  end
+              %>
+              <div><%= i.name %> : <%= part_mark_all.to_i %></div>
+              <% } %>
+            </div>
+
+
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<%if !@student.nil? and @student.courses.first.nil? %>
+  <div class="card">
+    <div class="card-header"><h4>Course Study</h4></div>
+    <div class="card-body">
+      <h6><i>Sorry. You haven't joint any course.</i></h6>
+    </div>
+  </div>
+<%end %>
+<% if !@teacher.nil? and !@teacher.courses.first.nil? %>
+  <div class="card">
+    <div class="card-header"><h4>Course Management</h4></div>
+    <div class="card-body">
+      <% @teacher.courses.each do |c| %>
+      <div class="border-bottom my-4">
+        <h5><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-book-half" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M12.786 1.072C11.188.752 9.084.71 7.646 2.146A.5.5 0 0 0 7.5 2.5v11a.5.5 0 0 0 .854.354c.843-.844 2.115-1.059 3.47-.92 1.344.14 2.66.617 3.452 1.013A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.276-.447L15.5 2.5l.224-.447-.002-.001-.004-.002-.013-.006-.047-.023a12.582 12.582 0 0 0-.799-.34 12.96 12.96 0 0 0-2.073-.609zM15 2.82v9.908c-.846-.343-1.944-.672-3.074-.788-1.143-.118-2.387-.023-3.426.56V2.718c1.063-.929 2.631-.956 4.09-.664A11.956 11.956 0 0 1 15 2.82z"/>
+          <path fill-rule="evenodd" d="M3.214 1.072C4.813.752 6.916.71 8.354 2.146A.5.5 0 0 1 8.5 2.5v11a.5.5 0 0 1-.854.354c-.843-.844-2.115-1.059-3.47-.92-1.344.14-2.66.617-3.452 1.013A.5.5 0 0 1 0 13.5v-11a.5.5 0 0 1 .276-.447L.5 2.5l-.224-.447.002-.001.004-.002.013-.006a5.017 5.017 0 0 1 .22-.103 12.958 12.958 0 0 1 2.7-.869z"/>
+        </svg> <%= c.name%></h5>
+      </div>
+        <div>Description: <%=c.description %></div>
+        <div>Start time: <%=c.start_time %></div>
+        <div>Finish time: <%=c.finish_time %></div>
+        <div>Teaching day: <% cm = c.course_managements.where("teacher_id = ?", @current_user.UserID).first %><%=cm.teachingDay %></div>
+        <%end %>
+    </div>
+  </div>
+<%end %>
+<% if !@teacher.nil? and @teacher.courses.first.nil? %>
+  <div class="card">
+    <div class="card-header"><h4>Course Management</h4></div>
+    <div class="card-body">
+      <h6><i>Sorry. You don't manage any class.</i></h6>
+    </div>
+  </div>
+<%end %>
+

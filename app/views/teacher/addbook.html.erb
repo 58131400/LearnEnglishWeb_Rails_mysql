@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header text-center">
+    <h4>Add book for Student</h4>
+  </div>
+  <div class="card-body">
+    <%= form_with :url => '/teacher/postaddbook' ,:html => {:class => "form-horizontal"} do %>
+      <div class="form-group">
+        <%= label_tag :class, "Choose book: ", class: "col-md-3 col-form-label" %>
+        <div class="col-md-5">
+          <%= collection_select(:student, :id, @books, :BookId, :Name, class: "form-control") %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :student, "Student Card: ", class: "col-md-3 col-form-label" %>
+        <div class="col-md-5">
+          <%= text_field :student, :StudentCard, class: "form-control", placeholder: "insert student card", required: "required" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="  col-md-offset-3 col-md-3">
+          <%= submit_tag 'add', class: "btn btn-primary" %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+

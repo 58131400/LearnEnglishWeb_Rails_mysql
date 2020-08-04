@@ -1,0 +1,28 @@
+<% if @listTest.size == 0 %>
+  <i>Sorry. No Test was made</i>
+  <% else %>
+<table class="table table-striped">
+  <tr>
+    <th>#</th>
+    <th>Test id</th>
+    <th>Description</th>
+    <th>Teacher</th>
+    <th>Action</th>
+  </tr>
+  <%@listTest.each_with_index { |t,index |%>
+    <tr>
+      <td><%=index %></td>
+      <td><%=t.id %></td>
+      <td><%=t.description %></td>
+      <td><%=User.find(t.teacher_id).Name %></td>
+      <td><%= link_to "View", {action: :viewtest, controller: :test, id: t.id} %></td>
+    </tr>
+    <%  } %>
+</table>
+<%end %>
+<button class="btn btn-primary" onclick="goBack()">Back</button>
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>

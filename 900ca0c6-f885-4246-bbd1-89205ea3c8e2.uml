@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>900ca0c6-f885-4246-bbd1-89205ea3c8e2</OriginalElement>
+  <nodes>
+    <node x="675.5260416666667" y="277.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.userrole</node>
+    <node x="622.1250000000001" y="55.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.role</node>
+    <node x="822.375" y="0.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.user</node>
+    <node x="353.2500000000001" y="456.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.part</node>
+    <node x="531.9010416666667" y="266.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.studentbook</node>
+    <node x="830.5260416666667" y="277.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.teacher</node>
+    <node x="1220.5260416666667" y="277.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.student</node>
+    <node x="407.00000000000006" y="1124.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.rightanswer</node>
+    <node x="0.0" y="1287.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.ar_internal_metadata</node>
+    <node x="447.00000000000006" y="956.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.selection</node>
+    <node x="901.5260416666667" y="500.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.audio</node>
+    <node x="1050.0" y="722.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.words</node>
+    <node x="237.0" y="1287.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.schema_migrations</node>
+    <node x="372.2500000000001" y="277.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.unit</node>
+    <node x="1048.5260416666667" y="266.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.classmanagement</node>
+    <node x="449.00000000000006" y="755.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.exercise</node>
+    <node x="772.0000000000001" y="755.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.part_audio</node>
+    <node x="1177.9010416666667" y="55.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.classdb</node>
+    <node x="910.0000000000001" y="744.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.testdb</node>
+    <node x="868.0000000000001" y="956.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.test_exercise</node>
+    <node x="387.75000000000006" y="0.0">900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.book</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.teacher" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.user">
+      <point x="0.0" y="-59.0" />
+      <point x="929.5260416666667" y="246.0" />
+      <point x="919.875" y="246.0" />
+      <point x="0.0" y="103.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.words" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.part">
+      <point x="38.5" y="-92.0" />
+      <point x="219.88690476190482" y="1062.0" />
+      <point x="300.8869047619048" y="1062.0" />
+      <point x="-42.0" y="81.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.userrole" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.user">
+      <point x="33.75" y="-59.0" />
+      <point x="776.7760416666667" y="246.0" />
+      <point x="880.875" y="246.0" />
+      <point x="-39.0" y="103.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.classmanagement" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.classdb">
+      <point x="38.0" y="-70.0" />
+      <point x="1162.5260416666667" y="246.0" />
+      <point x="1211.9010416666667" y="246.0" />
+      <point x="-34.0" y="48.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.student" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.user">
+      <point x="-36.25" y="-59.0" />
+      <point x="1256.7760416666667" y="236.0" />
+      <point x="997.8750000000001" y="236.0" />
+      <point x="78.00000000000006" y="103.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.test_exercise" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.exercise">
+      <point x="-34.0" y="-59.0" />
+      <point x="902.0000000000001" y="931.0" />
+      <point x="556.5" y="931.0" />
+      <point x="43.0" y="59.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.unit" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.book">
+      <point x="0.0" y="-59.0" />
+      <point x="437.2500000000001" y="246.0" />
+      <point x="441.25000000000006" y="246.0" />
+      <point x="-53.5" y="103.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.part" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.unit">
+      <point x="0.0" y="-103.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.selection" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.exercise">
+      <point x="0.0" y="-59.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.studentbook" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.student">
+      <point x="-38.75" y="-70.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.student" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.classdb">
+      <point x="36.25" y="-59.0" />
+      <point x="1329.2760416666667" y="246.0" />
+      <point x="1279.9010416666667" y="246.0" />
+      <point x="34.0" y="48.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.studentbook" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.book">
+      <point x="-30.0" y="-70.0" />
+      <point x="561.9010416666667" y="246.0" />
+      <point x="548.25" y="246.0" />
+      <point x="53.5" y="103.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.testdb" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.teacher">
+      <point x="38.25" y="-92.0" />
+      <point x="531.1369047619048" y="404.0" />
+      <point x="605.1369047619048" y="404.0" />
+      <point x="-49.5" y="59.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.part_audio" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.audio">
+      <point x="29.5" y="-59.0" />
+      <point x="860.5" y="702.0" />
+      <point x="933.5260416666667" y="702.0" />
+      <point x="-32.0" y="59.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.classmanagement" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.teacher">
+      <point x="38.25000000000006" y="-70.0" />
+      <point x="49.5" y="59.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.testdb" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.classdb">
+      <point x="-38.25" y="-92.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.userrole" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.role">
+      <point x="-33.75" y="-59.0" />
+      <point x="709.2760416666667" y="226.0" />
+      <point x="699.6250000000001" y="226.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.rightanswer" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.exercise">
+      <point x="-34.0" y="-59.0" />
+      <point x="441.00000000000006" y="1099.0" />
+      <point x="436.50000000000006" y="1099.0" />
+      <point x="436.50000000000006" y="931.0" />
+      <point x="470.50000000000006" y="931.0" />
+      <point x="-43.0" y="59.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.words" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.audio">
+      <point x="0.0" y="-92.0" />
+      <point x="1127.0" y="702.0" />
+      <point x="997.5260416666667" y="702.0" />
+      <point x="32.0" y="59.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.test_exercise" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.testdb">
+      <point x="34.0" y="-59.0" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.part_audio" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.part">
+      <point x="-29.5" y="-59.0" />
+      <point x="801.5000000000001" y="682.0" />
+      <point x="507.2500000000001" y="682.0" />
+      <point x="70.0" y="103.0" />
+    </edge>
+    <edge source="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.rightanswer" target="900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.selection">
+      <point x="34.0" y="-59.0" />
+      <point x="509.00000000000006" y="1099.0" />
+      <point x="513.5" y="1099.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.2646855563234278" x="690.0" y="713.5" />
+  <SelectedNodes>
+    <node>900ca0c6-f885-4246-bbd1-89205ea3c8e2.TABLE:englishweb.book</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

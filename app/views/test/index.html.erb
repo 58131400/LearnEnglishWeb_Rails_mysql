@@ -1,0 +1,63 @@
+<div class="container">
+
+  <% if @courses.first.nil? %>
+    <i>Sorry, You must manage a class first.</i>
+    <button class="btn btn-primary" onclick="goBack()">Back</button>
+  <% else %>
+    <div class="card">
+      <div class="card-header text-center"><h4>CREATE TEST</h4></div>
+      <div class="card-body text-center">
+        <%= form_with url: '/test/create' do %>
+          <div class="form-group">
+            <%= label_tag :test, "Course: ", class: "col-md-3 control-label" %>
+            <div class="">
+              <%= collection_select(:test, :ids, @courses, :course_id, :name, class: "form-control form-input") %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= label_tag :test, "Start time: ", class: "col-md-3 control-label" %>
+            <div class="">
+              <%= datetime_local_field(:test, :startDate) %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div>
+              <%= label_tag :test, "Finish time: ", class: "col-form-label" %>
+            </div>
+            <div class="">
+              <%= datetime_local_field(:test, :finishDate) %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= label_tag :test, "Description", class: "col-form-label" %>
+            <div>
+              <%= text_field :test, :description %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="">Choose test from:</div>
+            <%= radio_button_tag 'select', '0', true %>
+            <%= label_tag 'select', "Available Test File  ", class: "col-form-label" %>
+
+            <%= radio_button_tag 'select', '1' %>
+            <%= label_tag 'select', "Make your own Test", class: " col-form-lable" %>
+
+          </div>
+          <div class="form-group">
+
+            <div class=""><%= submit_tag "submit", class: "btn btn-primary col-sm-offset-2" %></div>
+            <!--      <div style="margin-left: 30px">-->
+            <!--        <button class="btn btn-primary" onclick="goBack()">Back</button>-->
+            <!--      </div>-->
+          </div>
+        <% end %>
+  <% end %>
+  </div>
+  </div>
+
+</div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

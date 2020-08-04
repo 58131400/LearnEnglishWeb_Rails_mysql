@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="text-center">Regist new Student</h4>
+  </div>
+  <div class="card-body">
+    <div class="mx-auto text-center" style="width: 600px">
+      <%=form_for :student ,url: {action: :create, controller: :students} do |f|%>
+
+        <div class="form-group">
+          <%=f.label :StudentCard, "Your student card: " %>
+          <%=f.text_field :StudentCard, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :classdb_id, "Your class: " %>
+          <%= f.collection_select( :classdb_id, @classes, :ClassId, :Name,{}, {:class=>'form-control'}) %>
+        </div>
+        <div class="form-group">
+          <%=f.submit 'submit', class:"btn btn-primary" %>
+        </div>
+      <%end %>
+    </div>
+  </div>
+</div>
+

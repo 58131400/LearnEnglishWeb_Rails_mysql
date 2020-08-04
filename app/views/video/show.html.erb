@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<% if !@video.nil? %>
+<div class="">
+
+  <table class="table table-striped">
+    <thead>
+    <th>video</th>
+    <th>name</th>
+    <th>content</th>
+    <th>upload by</th>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td style="width: 300px; height: 300px">
+
+            <%= video_tag url_for(@video.clip),
+                          controls: true, style: "width: 100%;height: auto", poster: url_for(@video.thumbnail) %>
+
+        </td>
+        <td><%= @video.name %></td>
+        <td><%= @video.content %></td>
+        <td><%= @video.user.Name %></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+</div>
+
+<%end %>
